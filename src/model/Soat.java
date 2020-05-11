@@ -33,11 +33,11 @@ public class Soat extends Documents {
 	@Override
 	public String goByMatrix(int[][] matrix) {
 		String soatCode = "";
-		for(int i = 0; i < 4; i++) {
+		for(int i = 0; i < super.getmatrix().length; i++) {
 			soatCode += matrix[i][0];
 			}
-		for (int i = 1; i < 4; i++) {
-			soatCode += matrix[3][i];
+		for (int i = 1; i < super.getmatrix().length; i++) {
+			soatCode += matrix[super.getmatrix().length-1][i];
 		}
 		return soatCode;
 	}
@@ -52,8 +52,7 @@ public class Soat extends Documents {
 		for(int i = 0; i < super.getmatrix().length; i++) {
 			for (int j = 0; j < super.getmatrix().length; j++) {
 				test += matrix[i][j];			
-			}
-			
+			}	
 		}return test;
 	}
 	@Override

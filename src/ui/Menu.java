@@ -1,14 +1,7 @@
 package ui;
+import java.time.LocalDate;
 import java.util.*;
-
-import model.Car;
 import model.Company;
-import model.Documents;
-import model.Electric;
-import model.Gasoline;
-import model.Hybrid;
-import model.Motorcycle;
-import model.Vehicle;
 public class Menu {
 
 	//Attributes and constants declaration
@@ -17,11 +10,12 @@ public class Menu {
 	private final static int ADD_VEHICLES = 1;
 	private final static int ADD_CLIENTS= 2;
 	private final static int SHOW_COMPANY_EMPLOYEES = 3;
-	private final static int SHOW_COMPANY_VEHICLES = 4;
-	private final static int SHOW_CLIENTS = 5;
-	private final static int ENTRY_FAVORITES = 6;
-	private final static int APPLY_DICSOUNT = 7;
-	private final static int EXIT = 8;
+	private final static int SHOW_COMPNAY_EMPLOYEES_COMPLETE = 4;
+	private final static int SHOW_COMPANY_VEHICLES = 5;
+	private final static int SHOW_CLIENTS = 6;
+	private final static int ENTRY_FAVORITES = 7;
+	private final static int APPLY_DICSOUNT = 8;
+	private final static int EXIT = 9;
 
 
 	public Menu() {
@@ -554,6 +548,80 @@ public class Menu {
 			}
 		}
 	}
+	public void showClientsComplete() {
+		String info = "";
+		for (int i = 0; i < company.salesMan.length; i++) {
+			for (int j = 0; j < company.salesMan[i].clients.length; j++) {
+				if(company.salesMan[i].clients[j] != null) {
+					System.out.println("Employee name: "+company.salesMan[i].getName()+" #"+(i+=1)+"\n");
+					i--;
+					System.out.println("--Client-- #"+(j+=1)+"\n");
+					j--;
+					info = "Name: "+company.salesMan[i].clients[j].getName()+"\nLast name: "+company.salesMan[i].clients[j].getLastName()+"\nID: "+company.salesMan[i].clients[j].getId()+"\n"+"Telephone: "+company.salesMan[i].clients[j].getTel()+"\n"+"Mail: "+company.salesMan[i].clients[j].getMail()+"\n";
+					System.out.println(info);
+				}
+			}
+		}
+	}
+//	public void operationsWithSpecificClient(int choose) {
+//		System.out.println("The company has these sellers with those assigned clients");
+//		System.out.println(company.showEmployees()+"\n");
+//		System.out.println("With which seller are the client inscribe?");
+//		int sellerNumber = 0;
+//		while(sellerNumber<1 || sellerNumber>10) {
+//			System.out.println("Choose him with his seller number");
+//			sellerNumber = sc.nextInt();
+//		}
+//		sellerNumber-=1;
+//		System.out.println("Which of the assigned clients you need?");
+//		int clientNumber = 0;
+//		int k = 0;
+//		for (int i = 0; i < company.salesMan[sellerNumber].clients.length; i++) {
+//			if(company.salesMan[sellerNumber].clients[i] != null) {	
+//				k+=1;
+//			}
+//		}
+//		while(clientNumber<1 || clientNumber>k) {
+//			System.out.println("Choose him with his seller number");
+//			clientNumber = sc.nextInt();
+//		}
+//		clientNumber-=1;
+//		System.out.println();
+//		System.out.println("Which vehicle do you want to use?\n");
+//		System.out.println(company.showVehicles()+"\n");
+//		int vehicleNumber = 0;
+//		while(vehicleNumber < 1 || vehicleNumber>company.vehicles.size()) {
+//			System.out.println("Choose it with it's vechicle number\n");
+//			vehicleNumber = sc.nextInt();
+//		}
+//		vehicleNumber-=1;
+//		switch (choose) {
+//		case CLIENT_FAVORITES:
+//			company.salesMan[sellerNumber].clients[clientNumber].tryDrive.add(company.vehicles.get(choose));
+//			System.out.println("Vehicle added to favorites to the client: " + company.salesMan[sellerNumber].clients[clientNumber].getName());
+//			break;
+//
+//		case SELL_VEHICLE:
+//			if(company.vehicles.get(vehicleNumber).getSold()==true)
+//				System.out.println("This vehicle is already sold");
+//			else {
+//				company.vehicles.get(vehicleNumber).setSold(true);
+//				company.vehicles.get(vehicleNumber).setOwner(company.salesMan[sellerNumber].clients[clientNumber].getName());
+//				System.out.println("Now, let's do the documentation");
+//				int year = LocalDate.now().getYear();
+//				System.out.println("Enter the mount to cover accidents");
+//				double accidents = sc.nextDouble();
+//				System.out.println("Enter the gas levels");
+//				double gasLevel = sc.nextDouble();
+//				
+//			}
+//			break;
+//
+//		default:
+//			System.out.println("Select a correct option");
+//			break;
+//		}
+//	}
 	public void apllyDiscount() {
 		int select = 0; 
 		double value = 0;
@@ -584,11 +652,14 @@ public class Menu {
 		case SHOW_COMPANY_EMPLOYEES:			
 			System.out.println(company.showEmployees());
 			break;
+		case SHOW_COMPNAY_EMPLOYEES_COMPLETE:
+			System.out.println(company.showEmployeesComplete());
+			break;
 		case SHOW_COMPANY_VEHICLES:
 			System.out.println(company.showVehicles());
 			break;
 		case SHOW_CLIENTS:
-			showClients();
+			showClientsComplete();
 			break;
 		case ENTRY_FAVORITES:
 			favoriteOfClient();
@@ -605,7 +676,7 @@ public class Menu {
 	public void showMenu() {
 		System.out.println("********MENU********");
 		System.out.println();
-		System.out.println("1. Add vehicle\n2. Add clients for each employee\n3. Show company employees\n4. Show company vehicles \n5. Show clients per employee \n6. Show favorites per client\n7. Apply discount to vehicle\n8. Exit\n");
+		System.out.println("1. Add vehicle\n2. Add clients for each employee\n3. Show positions free per employee\n4. Deploy employees information \n5. Show company vehicles \n6. Show clients per employee \n7. Show favorites per client\n8. Apply discount to vehicle\n9. Exit\n");
 	}
 	public void startProgram() {
 		int option;

@@ -74,19 +74,6 @@ public class Employee {
 	public int getTotalSales() {
 		return totalSales;
 	}
-//	public void addClients() {
-//		String name = "";
-//		String lastName = "";
-//		int id = 0;
-//		int tel = 0;
-//		String mail = "";
-//		for(int i = 0; i < clients.length; i++) {
-//			
-//
-//		}
-//
-//
-//	}
 	
 
 }

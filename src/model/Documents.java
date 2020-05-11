@@ -5,7 +5,7 @@ public abstract class Documents {
 	private double price;
 	private int year;
 	private int[][] matrix;
-	private final static int SIZE = 4;
+	private final static int SIZE = 5;
 
 	/**
 	 * 
@@ -24,7 +24,6 @@ public abstract class Documents {
 	public int[][] makeMatrix() {
 		matrix = new int[SIZE][SIZE];
 		Random ran = new Random();
-		int value = ran.nextInt(9);
 		for(int i = 0; i < SIZE; i++) {
 			for(int j = 0; j < SIZE; j++) {
 				matrix[i][j] = ran.nextInt(9);

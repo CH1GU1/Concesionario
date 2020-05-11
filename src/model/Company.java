@@ -20,8 +20,8 @@ public class Company {
 		this.sales = sales;
 		vehicles = new ArrayList<>();
 		salesMan = new Employee[MAX_SELLER];
-
 	}
+	
 	public void initializeEmployee() {
 		salesMan[0] = new Employee("Julian", "Riascos", 1001445130, 0);
 		salesMan[1] = new Employee("Joe", "Monitor", 1002351025, 0);
@@ -193,12 +193,22 @@ public class Company {
 			info += "\nThe seller #" + (i+1) + " named "+ salesMan[i].getName() + " has assigned: \n";
 			for (int j = 0; j < salesMan[i].clients.length; j++) {
 				if(salesMan[i].clients[j] != null) {
-					info += "Client # "+ (j+1) + " " + salesMan[i].clients[j].getName() + " " + salesMan[i].clients[j].getLastName() + " with the ID " + salesMan[i].clients[j].getId() + "\n";	
-					k-=1;
+					info += "Client # "+ (j+1) + "\n" + salesMan[i].clients[j].getName() + "\n" + salesMan[i].clients[j].getLastName() + "\nwith the ID " + salesMan[i].clients[j].getId()+"\n";	
+				}
+				if(salesMan[i].clients[j] == null) {
+					System.out.println();
+					info += "Position #"+(j+=1)+" free to add a client\n";
+					j-=1;
 				}
 			}
-			if(k==5)
-				info += "This seller is free in this moments\n\n";
+		}
+		return info;
+	}
+	public String showEmployeesComplete() {
+		String info = "";
+		for (int i = 0; i < salesMan.length; i++) {
+			info += "\nSeller #" + (i+1) + "\nID: "+salesMan[i].getId()+"\nName: "+salesMan[i].getName()+"\nLast name: "+salesMan[i].getLastName()+"\nHad sold: "+salesMan[i].getTotalSales()+" vehicles\n";
+			System.out.println();
 		}
 		return info;
 	}
