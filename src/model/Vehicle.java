@@ -27,7 +27,6 @@ public abstract class Vehicle {
 	 * @param plaque
 	 */
 	public Vehicle(double basePrice, String brand, int model, double cylinder, int mileage, String new1, String plaque, double price, double price2, int year, double accidents, double gas) {
-		this.totalPrice = totalPrice;
 		this.basePrice = basePrice;
 		this.brand = brand;
 		this.model = model;
@@ -44,7 +43,6 @@ public abstract class Vehicle {
 		docs.add(mech);
 	}
 	public Vehicle(double basePrice, String brand, int model, double cylinder, int mileage, String new1) {
-		this.totalPrice = totalPrice;
 		this.basePrice = basePrice;
 		this.brand = brand;
 		this.model = model;
@@ -73,6 +71,30 @@ public abstract class Vehicle {
 	}
 	public boolean getSold() {
 		return sold;
+	}
+	public String getNew1() {
+		return new1;
+	}
+	public void setNew1(String new1) {
+		this.new1 = new1;
+	}
+	public String getOwner() {
+		return owner;
+	}
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+	public Documents getSoat() {
+		return soat;
+	}
+	public void setSoat(Documents soat) {
+		this.soat = soat;
+	}
+	public Documents getMech() {
+		return mech;
+	}
+	public void setMech(Documents mech) {
+		this.mech = mech;
 	}
 	/**
 	 * 

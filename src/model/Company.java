@@ -8,8 +8,9 @@ public class Company {
 	private double totalGain;
 	private int sales;
 	public static int MAX_SELLER = 10;
-
-
+	private Car[][] parkingLot;
+	public static int parkRows = 10;
+	public static int parkCols = 5;
 	public ArrayList<Vehicle> vehicles;
 	public Employee[] salesMan;
 
@@ -21,7 +22,7 @@ public class Company {
 		vehicles = new ArrayList<>();
 		salesMan = new Employee[MAX_SELLER];
 	}
-	
+
 	public void initializeEmployee() {
 		salesMan[0] = new Employee("Julian", "Riascos", 1001445130, 0);
 		salesMan[1] = new Employee("Joe", "Monitor", 1002351025, 0);
@@ -33,6 +34,11 @@ public class Company {
 		salesMan[7] = new Employee("Sarah", "Lopez", 1001520364, 0);
 		salesMan[8] = new Employee("Camila", "Lopez", 1001020254, 0);
 		salesMan[9] = new Employee("Laurent", "Duarte", 1005894120, 0);	
+		Vehicle Ug1 = new Gasoline(500000, "Hyundai", 2014, 1.7, 700, "No", "HMO-024", "Yes", 4, "Yes", 9, "NORMAL", 300, 200, 2014, 50000, 20);
+		Vehicle Ug2 = new Gasoline(400000, "Renault", 2013, 1.5, 900, "No", "TRG-346", "Yes", 4, "Yes", 8, "NORMAL", 200, 500, 2013, 20000, 30);
+		Vehicle Ug3 = new Gasoline(200000, "Mazda", 2012, 3.0, 500, "No", "JPR-356", "No", 4, "Yes", 15, "EXTRA", 400, 800, 2012, 30000, 32);
+		Vehicle Ug4 = new Gasoline(350000, "Nissan", 2011, 1.6, 200, "No", "BMT-056", "Yes", 4, "Yes", 7, "NORMAL", 100, 200, 2011, 25000, 26);
+		Vehicle Ug5 = new Gasoline(410000, "BMW", 2010, 2.2, 800, "No", "GHT-456", "Yes", 2, "Yes", 9, "EXTRA", 500, 400, 2010, 50000, 20);
 		Vehicle g1 = new Gasoline(20000, "Chevrolet", 2020, 1.8, 2, "Yes", "Yes", 4, "Yes", 9, "NORMAL");
 		Vehicle e1 = new Electric(30000, "Tesla", 2020, 3.5, 2, "Yes", "Yes", 4, "No", "FAST", 300);
 		Vehicle h1 = new Hybrid(25000, "Tesla", 2020, 2.1, 1, "Yes", "No", 4, "Yes", "NORMAL", 400, 7, "EXTRA");
@@ -41,11 +47,164 @@ public class Company {
 		addVehicle(e1);
 		addVehicle(h1);
 		addVehicle(m1);
+		addVehicle(Ug1);
+		addVehicle(Ug2);
+		addVehicle(Ug3);
+		addVehicle(Ug4);
+		addVehicle(Ug5);
+	}
+	public Car[][] getParking() {
+		return parkingLot;
+	}	
+	public String getInfoParking(int request) {
+		String info = "";
+		boolean cont = true;
+		boolean go = true;
+		if(request == 2010) {
+			info += "\nUsed cars of models below "+(request+1)+" on the parking lot are: \n";
+		}
+		else {
+			info += "\nUsed cars models "+request+" on the parking lot are: \n";
+		}	
+		for (int i = 0; i < vehicles.size(); i++) {
+			go = true;
+			if(vehicles.get(i) instanceof Car && vehicles.get(i).getModel() == 2014 && request == 2014) {
+				for(int k = 0; k < parkRows; k++) {
+					if(parkingLot[k][0] != null && cont) {
+						info +=	"\n***Car #"+(k+1)+"**"+"\n"+parkingLot[k][0].description()+"\n";
+						go = false;
+					}
+					else if(cont) {
+						info += "\n**There "+(10-k)+" parkings free for 2014 cars models \n**";
+						cont = false;
+					}	
+				}
+			}
+			if(vehicles.get(i) instanceof Car && vehicles.get(i).getModel() == 2013 && request == 2013) {
+				for(int k = 0; k < parkRows; k++) {
+					if(parkingLot[k][1] != null && cont) {
+						info +=	"\n***Car #"+(k+1)+"**"+"\n"+parkingLot[k][1].description()+"\n";
+						go = false;
+					}
+					else if(cont) {
+						info += "\n**There "+(10-k)+" parkings free for 2013 cars models \n**";
+						cont = false;
+					}	
+				}
+			}
+			if(vehicles.get(i) instanceof Car && vehicles.get(i).getModel() == 2012 && request == 2012) {
+				for(int k = 0; k < parkRows; k++) {
+					if(parkingLot[k][2] != null && cont) {
+						info +=	"\n***Car #"+(k+1)+"**"+"\n"+parkingLot[k][2].description()+"\n";
+						go = false;
+					}
+					else if(cont) {
+						info += "\n**There "+(10-k)+" parkings free for 2012 cars models \n**";
+						cont = false;
+					}	
+				}
+			}
+			if(vehicles.get(i) instanceof Car && vehicles.get(i).getModel() == 2011 && request == 2011) {
+				for(int k = 0; k < parkRows; k++) {
+					if(parkingLot[k][3] != null && cont) {
+						info +=	"\n***Car #"+(k+1)+"**"+"\n"+parkingLot[k][3].description()+"\n";
+						go = false;
+					}
+					else if(cont) {
+						info += "\n**There "+(10-k)+" parkings free for 2011 cars models \n**";
+						cont = false;
+					}	
+				}
+			}
+			if(vehicles.get(i) instanceof Car && vehicles.get(i).getModel() == 2010 && request == 2010) {
+				for(int k = 0; k < parkRows; k++) {
+					if(parkingLot[k][4] != null && cont) {
+						info +=	"\n***Car #"+(k+1)+"**"+"\n"+parkingLot[k][4].description()+"\n";
+						go = false;
+					}
+					else if(cont) {
+						info += "\n**There "+(10-k)+" parkings free for cars models below 2011  \n**";
+						cont = false;
+					}	
+				}
+			}
+		}
+		return info;
+	}
+	public String organizeParking() {
+		String info = "";
+		boolean cont = true;
+		boolean go = true;
+		parkingLot = new Car[parkRows][parkCols];
+		for (int i = 0; i < vehicles.size(); i++) {
+			go = true;
+			if(vehicles.get(i) instanceof Car && vehicles.get(i).getModel() == 2014 && vehicles.get(i).getNew1().equalsIgnoreCase("No")){
+				for(int k = 0; k < parkRows; k++) {
+					if(parkingLot[k][0] == null && cont && vehicles.get(i).getModel() == 2014 && vehicles.get(i).getNew1().equalsIgnoreCase("No") && go) {
+						parkingLot[k][0] = (Car) vehicles.get(i);	
+						go = false;
+					}
+					else if(!cont) {
+						info = "Parking lot must be extended";
+						cont = false;
+					}
+				}
+			}
+			if(vehicles.get(i) instanceof Car && vehicles.get(i).getModel() == 2013 && vehicles.get(i).getNew1().equalsIgnoreCase("No")){
+				for(int k = 0; k < parkRows; k++) {
+					if(parkingLot[k][1] == null && cont && vehicles.get(i).getModel() == 2013 && vehicles.get(i).getNew1().equalsIgnoreCase("No") && go) {
+						parkingLot[k][1] = (Car) vehicles.get(i);	
+						go = false;
+					}
+					else if(!cont) {
+						info = "Parking lot must be extended";
+						cont = false;
+					}
+				}
+			}
+			if(vehicles.get(i) instanceof Car && vehicles.get(i).getModel() == 2012 && vehicles.get(i).getNew1().equalsIgnoreCase("No")){
+				for(int k = 0; k < parkRows; k++) {
+					if(parkingLot[k][2] == null && cont && vehicles.get(i).getModel() == 2012 && vehicles.get(i).getNew1().equalsIgnoreCase("No") && go) {
+						parkingLot[k][2] = (Car) vehicles.get(i);	
+						go = false;
+					}
+					else if(!cont) {
+						info = "Parking lot must be extended";
+						cont = false;
+					}
+				}
+			}
+			if(vehicles.get(i) instanceof Car && vehicles.get(i).getModel() == 2011 && vehicles.get(i).getNew1().equalsIgnoreCase("No")){
+				for(int k = 0; k < parkRows; k++) {
+					if(parkingLot[k][3] == null && cont && vehicles.get(i).getModel() == 2011 && vehicles.get(i).getNew1().equalsIgnoreCase("No") && go) {
+						parkingLot[k][3] = (Car) vehicles.get(i);	
+						go = false;
+					}
+					else if(!cont) {
+						info = "Parking lot must be extended";
+						cont = false;
+					}
+				}
+			}
+			if(vehicles.get(i) instanceof Car && vehicles.get(i).getModel() <= 2010 && vehicles.get(i).getNew1().equalsIgnoreCase("No")){
+				for(int k = 0; k < parkRows; k++) {
+					if(parkingLot[k][4] == null && cont && vehicles.get(i).getModel() <= 2010 && vehicles.get(i).getNew1().equalsIgnoreCase("No") && go) {
+						parkingLot[k][4] = (Car) vehicles.get(i);	
+						go = false;
+					}
+					else if(!cont) {
+						info = "Parking lot must be extended";
+						cont = false;
+					}
+				}
+			}
+		}
+		return info;
 	}
 	public void addVehicle(Vehicle vehicle) {
 		vehicles.add(vehicle);
 	}
-	public Gasoline createGasolineCar( double basePrice, String brand, int model, double cylinder, int mileage, String new1, String plaque, String sedan, int doors, String polarized, double tankCapacity, String gasType, double price, double price2, int year, double accidents, double gas) {
+	public Gasoline createGasolineCar(double basePrice, String brand, int model, double cylinder, int mileage, String new1, String plaque, String sedan, int doors, String polarized, double tankCapacity, String gasType, double price, double price2, int year, double accidents, double gas) {
 		Gasoline gasoline = new Gasoline(basePrice, brand, model, cylinder, mileage, new1, plaque, sedan, doors, polarized, tankCapacity, gasType, price, price2, year, accidents, gas);
 		addVehicle(gasoline);
 		return gasoline;
@@ -169,26 +328,22 @@ public class Company {
 		String info = "";
 		for(int i = 0; i < vehicles.size(); i++) { 
 			if(vehicles.get(i) instanceof Car && vehicles.get(i) instanceof Gasoline) {
-				info += "\n***Gasoline Cars***"+"\n"+vehicles.get(i).description()+"\n"+"Number of vehicle in list: #"+(i+=1)+"\n";
-				i-=1;
+				info += "\n***Gasoline Cars***"+"\n"+vehicles.get(i).description()+"\n"+"Number of vehicle in list: #"+(i+1)+"\n";		
 			}	
 			if(vehicles.get(i) instanceof Car && vehicles.get(i) instanceof Electric) {
-				info += "\n***Electric Cars***"+"\n"+vehicles.get(i).description()+"\n"+"Number of vehicle in list: #"+(i+=1)+"\n";
-				i-=1;
+				info += "\n***Electric Cars***"+"\n"+vehicles.get(i).description()+"\n"+"Number of vehicle in list: #"+(i+1)+"\n";		
 			}
 			if(vehicles.get(i) instanceof Car && vehicles.get(i) instanceof Hybrid) {
-				info += "\n***Hybrid Cars***"+"\n"+vehicles.get(i).description()+"\n"+"Number of vehicle in list: #"+(i+=1)+"\n";
-				i-=1;
+				info += "\n***Hybrid Cars***"+"\n"+vehicles.get(i).description()+"\n"+"Number of vehicle in list: #"+(i+1)+"\n";		
 			}
 			if(vehicles.get(i) instanceof Motorcycle) {
-				info += "\n***Motorcycle***"+"\n"+vehicles.get(i).description()+"\n"+"Number of vehicle in list: #"+(i+=1)+"\n";
-				i-=1;
+				info += "\n***Motorcycle***"+"\n"+vehicles.get(i).description()+"\n"+"Number of vehicle in list: #"+(i+1)+"\n";
+
 			}
 		}return info;
 	}
 	public String showEmployees() {
 		String info = "";
-		int k = 5;
 		for (int i = 0; i < salesMan.length; i++) {
 			info += "\nThe seller #" + (i+1) + " named "+ salesMan[i].getName() + " has assigned: \n";
 			for (int j = 0; j < salesMan[i].clients.length; j++) {
@@ -197,8 +352,7 @@ public class Company {
 				}
 				if(salesMan[i].clients[j] == null) {
 					System.out.println();
-					info += "Position #"+(j+=1)+" free to add a client\n";
-					j-=1;
+					info += "Position #"+(j+1)+" free to add a client\n";
 				}
 			}
 		}

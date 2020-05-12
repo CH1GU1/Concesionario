@@ -37,16 +37,6 @@ public abstract class Car extends Vehicle {
 		this.doors = doors;
 		this.polarized = polarized;		
 	}
-	/**
-	 * 
-	 * @param pepito
-	 */
-	public abstract String carType(int pepito);
-
-	/**
-	 * 
-	 * @param sedan
-	 */
 	public void setSedan(String sedan) {
 		this.sedan = sedan;
 	}

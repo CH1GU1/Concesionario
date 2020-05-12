@@ -23,10 +23,10 @@ public abstract class Documents {
 	}	
 	public int[][] makeMatrix() {
 		matrix = new int[SIZE][SIZE];
-		Random ran = new Random();
+		Random ran = new Random(99);
 		for(int i = 0; i < SIZE; i++) {
 			for(int j = 0; j < SIZE; j++) {
-				matrix[i][j] = ran.nextInt(9);
+				matrix[i][j] = ran.nextInt(99);
 			}
 		}
 		return matrix;
@@ -69,6 +69,5 @@ public abstract class Documents {
 		return info;
 	}
 	public abstract double getAccidents();
-
 	public abstract double getGas();
 }

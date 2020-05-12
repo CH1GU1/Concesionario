@@ -15,7 +15,8 @@ public class Menu {
 	private final static int SHOW_CLIENTS = 6;
 	private final static int ENTRY_FAVORITES = 7;
 	private final static int APPLY_DICSOUNT = 8;
-	private final static int EXIT = 9;
+	private final static int ORGANIZE_PARKING = 9;
+	private final static int EXIT = 10;
 
 
 	public Menu() {
@@ -563,66 +564,7 @@ public class Menu {
 			}
 		}
 	}
-//	public void operationsWithSpecificClient(int choose) {
-//		System.out.println("The company has these sellers with those assigned clients");
-//		System.out.println(company.showEmployees()+"\n");
-//		System.out.println("With which seller are the client inscribe?");
-//		int sellerNumber = 0;
-//		while(sellerNumber<1 || sellerNumber>10) {
-//			System.out.println("Choose him with his seller number");
-//			sellerNumber = sc.nextInt();
-//		}
-//		sellerNumber-=1;
-//		System.out.println("Which of the assigned clients you need?");
-//		int clientNumber = 0;
-//		int k = 0;
-//		for (int i = 0; i < company.salesMan[sellerNumber].clients.length; i++) {
-//			if(company.salesMan[sellerNumber].clients[i] != null) {	
-//				k+=1;
-//			}
-//		}
-//		while(clientNumber<1 || clientNumber>k) {
-//			System.out.println("Choose him with his seller number");
-//			clientNumber = sc.nextInt();
-//		}
-//		clientNumber-=1;
-//		System.out.println();
-//		System.out.println("Which vehicle do you want to use?\n");
-//		System.out.println(company.showVehicles()+"\n");
-//		int vehicleNumber = 0;
-//		while(vehicleNumber < 1 || vehicleNumber>company.vehicles.size()) {
-//			System.out.println("Choose it with it's vechicle number\n");
-//			vehicleNumber = sc.nextInt();
-//		}
-//		vehicleNumber-=1;
-//		switch (choose) {
-//		case CLIENT_FAVORITES:
-//			company.salesMan[sellerNumber].clients[clientNumber].tryDrive.add(company.vehicles.get(choose));
-//			System.out.println("Vehicle added to favorites to the client: " + company.salesMan[sellerNumber].clients[clientNumber].getName());
-//			break;
-//
-//		case SELL_VEHICLE:
-//			if(company.vehicles.get(vehicleNumber).getSold()==true)
-//				System.out.println("This vehicle is already sold");
-//			else {
-//				company.vehicles.get(vehicleNumber).setSold(true);
-//				company.vehicles.get(vehicleNumber).setOwner(company.salesMan[sellerNumber].clients[clientNumber].getName());
-//				System.out.println("Now, let's do the documentation");
-//				int year = LocalDate.now().getYear();
-//				System.out.println("Enter the mount to cover accidents");
-//				double accidents = sc.nextDouble();
-//				System.out.println("Enter the gas levels");
-//				double gasLevel = sc.nextDouble();
-//				
-//			}
-//			break;
-//
-//		default:
-//			System.out.println("Select a correct option");
-//			break;
-//		}
-//	}
-	public void apllyDiscount() {
+	public void applyDiscount() {
 		int select = 0; 
 		double value = 0;
 		double amount = 0;
@@ -665,7 +607,11 @@ public class Menu {
 			favoriteOfClient();
 			break;
 		case APPLY_DICSOUNT:
-			apllyDiscount();
+			applyDiscount();
+			break;
+		case ORGANIZE_PARKING:
+			company.organizeParking();
+			selectModelOrganize();
 			break;
 		default:
 			System.out.println();
@@ -673,10 +619,175 @@ public class Menu {
 			break;
 		}
 	}
+	public void discount(int vehicleNumber) {
+		double value = 0;
+		double amount = 0;
+		double finalValue = 0;
+		System.out.println("How many discount do you want to apply?");
+		System.out.println("Enter values between 1 and 99 percent");
+		value = sc.nextInt();
+		value /= 100;
+		amount = company.vehicles.get(vehicleNumber).getTotalPrice() * value;
+		finalValue = company.vehicles.get(vehicleNumber).getTotalPrice() - amount;
+		company.vehicles.get(vehicleNumber).setTotalPrice(finalValue);
+		System.out.println("Discount of "+value*100+"% Was applied to vehicle!\nPlease check on the vehicle list\n");
+	}
+	public void applyDiscount(int decision, int vehicleNumber) {
+		switch (decision) {
+		case 1:
+			discount(vehicleNumber);
+			System.out.println("Vehicle sold!");
+			break;
+		case 2:
+			System.out.println("Vehicle sold!");
+			break;
+		default:
+			break;
+		}
+	}
+	public void pay(int vehicleNumber, int sellerNumber) {
+		int docSoat = company.vehicles.get(vehicleNumber).docs.size()-2;
+		int docMech = company.vehicles.get(vehicleNumber).docs.size()-1;
+		int sells = company.salesMan[sellerNumber].getTotalSales()+1;
+		company.salesMan[sellerNumber].setTotalSales(sells);
+		int companySells = company.getSales()+1;
+		company.setSales(companySells);
+		if(LocalDate.now().getYear()!= company.vehicles.get(vehicleNumber).docs.get(docSoat).getYear()) {
+			System.out.println("The mount for the SOAT is $500.000");
+			System.out.println("Your SOAT is out of date, you need to pay a extrapay. This equals to $500.000 extra");
+			double pay = company.vehicles.get(vehicleNumber).getTotalPrice() + 500000 + 500000;
+			company.vehicles.get(vehicleNumber).setTotalPrice(pay);
+			company.setTotalGain(pay);
+		}
+		else {
+			System.out.println("The mount for the SOAT is $500.000");
+			double pay = company.vehicles.get(vehicleNumber).getTotalPrice() + 500000;
+			company.vehicles.get(vehicleNumber).setTotalPrice(pay);
+			company.setTotalGain(pay);
+		}
+		if(LocalDate.now().getYear()!= company.vehicles.get(vehicleNumber).docs.get(docMech).getYear()) {
+			System.out.println("The mount for the mechanical technician is $500.000");
+			System.out.println("Your mechanical technician is out of date, you need to pay a extrapay. This equals to $500.000 extra");
+			double pay = company.vehicles.get(vehicleNumber).getTotalPrice()+500000+500000;
+			company.vehicles.get(vehicleNumber).setTotalPrice(pay);
+			company.setTotalGain(pay);
+		}
+		else {
+			System.out.println("The mount for the mechanical technician is $500.000");
+			double pay = company.vehicles.get(vehicleNumber).getTotalPrice() + 500000;
+			company.vehicles.get(vehicleNumber).setTotalPrice(pay);
+			company.setTotalGain(pay);
+		}
+		int decision = 0;
+		while(decision<1 || decision>2) {
+			System.out.println("You want to do some discount?\n1. Yes\n2. No");
+			decision = sc.nextInt();
+		}
+		applyDiscount(decision, vehicleNumber);
+	}
+	public void operationsWithSpecificClient(int choose) {
+		System.out.println("The company has these salesMan with those assigned clients");
+		System.out.println(company.showEmployees()+"\n");
+		System.out.println("With which seller are the client inscribe?");
+		int sellerNumber = 0;
+		while(sellerNumber<1 || sellerNumber>10) {
+			System.out.println("Choose him with his seller number");
+			sellerNumber = sc.nextInt();
+		}
+		sellerNumber-=1;
+		System.out.println("Which of the assigned clients you need?");
+		int clientNumber = 0;
+		int k = 0;
+		for (int i = 0; i < company.salesMan[sellerNumber].clients.length; i++) {
+			if(company.salesMan[sellerNumber].clients[i] != null) {	
+				k+=1;
+			}
+		}
+		while(clientNumber<1 || clientNumber>k) {
+			System.out.println("Choose him with his seller number");
+			clientNumber = sc.nextInt();
+		}
+		clientNumber-=1;
+		System.out.println();
+		System.out.println("Which vehicle do you want to use?\n");
+		System.out.println(company.showVehicles()+"\n");
+		int vehicleNumber = 0;
+		while(vehicleNumber < 1 || vehicleNumber>company.vehicles.size()) {
+			System.out.println("Choose it with it's vechicle number\n");
+			vehicleNumber = sc.nextInt();
+		}
+		vehicleNumber-=1;
+		sc.nextLine();
+		switch (choose) {
+		case CLIENT_FAVORITES:
+			company.salesMan[sellerNumber].clients[clientNumber].tryDrive.add(company.vehicles.get(choose));
+			System.out.println("Vehicle added to favorites to the client: " + company.salesMan[sellerNumber].clients[clientNumber].getName());
+			break;
+
+		case 2:
+			if(company.vehicles.get(vehicleNumber).getSold()==true) {
+				System.out.println("This vehicle is already sold");
+			}
+			else {
+				company.vehicles.get(vehicleNumber).setSold(true);
+				company.vehicles.get(vehicleNumber).setOwner(company.salesMan[sellerNumber].clients[clientNumber].getName());
+				System.out.println("Type a plaque for the vehicle: ");
+				String plaque = sc.nextLine();
+				company.vehicles.get(vehicleNumber).setPlaque(plaque);
+				System.out.println("Now, let's do the documentation");
+				int year = LocalDate.now().getYear();
+				System.out.println("Enter the mount to cover accidents");
+				double accidents = sc.nextDouble();
+				System.out.println("Enter the gas levels");
+				double gasLevel = sc.nextDouble();
+				company.adddocs(vehicleNumber, year, accidents, gasLevel);
+				pay(vehicleNumber, sellerNumber);
+			}
+			break;
+
+		default: System.out.println("Enter a valid number");
+		break;
+		}
+	}
+	public void selectModelOrganize() {
+		int select = 0; 
+		boolean cont = false;
+		System.out.println("\nTo show the organization of parking loat please select the year");
+		System.out.println("\n1. 2014 \n2. 2013 \n3. 2012\n4. 2011\n5. Below 2011\n");
+		select = sc.nextInt();
+	while(!cont) {
+		switch (select) {
+		case 1:
+			select = 2014;
+			cont = true;
+			break;
+		case 2:
+			select = 2013;
+			cont = true;
+			break;
+		case 3:
+			select = 2012;
+			cont = true;
+			break;
+		case 4:
+			select = 2011;
+			cont = true;
+			break;
+		case 5:
+			select = 2010;
+			cont = true;
+			break;
+		default:
+			System.out.println("***please select a correct option***");
+			break;
+		}
+	}
+		System.out.println(company.getInfoParking(select));
+	}
 	public void showMenu() {
 		System.out.println("********MENU********");
 		System.out.println();
-		System.out.println("1. Add vehicle\n2. Add clients for each employee\n3. Show positions free per employee\n4. Deploy employees information \n5. Show company vehicles \n6. Show clients per employee \n7. Show favorites per client\n8. Apply discount to vehicle\n9. Exit\n");
+		System.out.println("1. Add vehicle\n2. Add clients for each employee\n3. Show positions free per employee\n4. Deploy employees information \n5. Show company vehicles \n6. Show clients per employee \n7. Show favorites per client\n8. Apply discount to vehicle\n9. Organize parking loat\n10. Exit\n");
 	}
 	public void startProgram() {
 		int option;

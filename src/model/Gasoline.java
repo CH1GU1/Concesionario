@@ -62,11 +62,6 @@ public class Gasoline extends Car implements Gasservices {
 	public void setGasPerformance(double gasPerformance) {
 		this.gasPerformance = gasPerformance;
 	}
-
-	@Override
-	public String carType(int pepito) {
-		return null;
-	}
 	@Override
 	  public String description() { 
 		String info = super.description()+"\nTank capacity: "+tankCapacity+"\nGas type: "+gasType+"\nGas performance: "+gasPerformance;

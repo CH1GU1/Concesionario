@@ -51,12 +51,6 @@ public class Electric extends Car implements Electricserv {
 	public void SetChargerType(int String) {
 		
 	}
-
-	@Override
-	public String carType(int pepito) {
-		
-		return null;
-	}
 	@Override
 	  public String description() { 
 		String info = super.description()+"\nCharger type: "+chargerType+"\nBattery life: "+batLife+"\nBattery consuption: "+batConsuption;
