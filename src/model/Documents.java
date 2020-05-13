@@ -60,11 +60,7 @@ public abstract class Documents {
 	}
 	public abstract String goByMatrix(int[][] matrix);
 
-	public String descriptionSoat() {
-		String info = "\nDocument year: "+year;
-		return info;
-	}
-	public String descriptionTech() {
+	public String description() {
 		String info = "\nDocument year: "+year;
 		return info;
 	}

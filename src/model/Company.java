@@ -34,14 +34,11 @@ public class Company {
 		salesMan[7] = new Employee("Sarah", "Lopez", 1001520364, 0);
 		salesMan[8] = new Employee("Camila", "Lopez", 1001020254, 0);
 		salesMan[9] = new Employee("Laurent", "Duarte", 1005894120, 0);	
-		Vehicle Ug1 = new Gasoline(500000, "Hyundai", 2014, 1.7, 700, "No", "HMO-024", "Yes", 4, "Yes", 9, "NORMAL", 300, 200, 2014, 50000, 20);
-		Vehicle Ug2 = new Gasoline(400000, "Renault", 2013, 1.5, 900, "No", "TRG-346", "Yes", 4, "Yes", 8, "NORMAL", 200, 500, 2013, 20000, 30);
-		Vehicle Ug3 = new Gasoline(200000, "Mazda", 2012, 3.0, 500, "No", "JPR-356", "No", 4, "Yes", 15, "EXTRA", 400, 800, 2012, 30000, 32);
-		Vehicle Ug4 = new Gasoline(350000, "Nissan", 2011, 1.6, 200, "No", "BMT-056", "Yes", 4, "Yes", 7, "NORMAL", 100, 200, 2011, 25000, 26);
-		Vehicle Ug5 = new Gasoline(410000, "BMW", 2010, 2.2, 800, "No", "GHT-456", "Yes", 2, "Yes", 9, "EXTRA", 500, 400, 2010, 50000, 20);
-		Vehicle g1 = new Gasoline(20000, "Chevrolet", 2020, 1.8, 2, "Yes", "Yes", 4, "Yes", 9, "NORMAL");
-		Vehicle e1 = new Electric(30000, "Tesla", 2020, 3.5, 2, "Yes", "Yes", 4, "No", "FAST", 300);
-		Vehicle h1 = new Hybrid(25000, "Tesla", 2020, 2.1, 1, "Yes", "No", 4, "Yes", "NORMAL", 400, 7, "EXTRA");
+		Vehicle Ug1 = new Gasoline(20000000, "Mazda", 2012, 3.0, 500, "No", "JPR-356", "No", 4, "Yes", 15, "EXTRA", 400000, 800000, 2012, 30000000, 32);
+		Vehicle Ug2 = new Gasoline(41000000, "BMW", 2010, 2.2, 800, "No", "GHT-456", "Yes", 2, "Yes", 9, "EXTRA", 500000, 400000, 2010, 50000000, 20);
+		Vehicle g1 = new Gasoline(20000000, "Chevrolet", 2020, 1.8, 2, "Yes", "Yes", 4, "Yes", 9, "NORMAL");
+		Vehicle e1 = new Electric(30000000, "Tesla", 2020, 3.5, 2, "Yes", "Yes", 4, "No", "FAST", 300);
+		Vehicle h1 = new Hybrid(25000000, "Tesla", 2020, 2.1, 1, "Yes", "No", 4, "Yes", "NORMAL", 400, 7, "EXTRA");
 		Motorcycle m1 = new Motorcycle(5000, "Honda", 2020, 1.2, 1, "Yes", "SPORT", 2);
 		addVehicle(g1);
 		addVehicle(e1);
@@ -49,9 +46,6 @@ public class Company {
 		addVehicle(m1);
 		addVehicle(Ug1);
 		addVehicle(Ug2);
-		addVehicle(Ug3);
-		addVehicle(Ug4);
-		addVehicle(Ug5);
 	}
 	public Car[][] getParking() {
 		return parkingLot;
@@ -75,7 +69,7 @@ public class Company {
 						go = false;
 					}
 					else if(cont) {
-						info += "\n**There "+(10-k)+" parkings free for 2014 cars models \n**";
+						info += "\n**"+(10-k)+" parkings remaining for 2014 cars models**\n";
 						cont = false;
 					}	
 				}
@@ -87,7 +81,7 @@ public class Company {
 						go = false;
 					}
 					else if(cont) {
-						info += "\n**There "+(10-k)+" parkings free for 2013 cars models \n**";
+						info += "\n**"+(10-k)+" parkings remaining for 2013 cars models**\n";
 						cont = false;
 					}	
 				}
@@ -99,7 +93,7 @@ public class Company {
 						go = false;
 					}
 					else if(cont) {
-						info += "\n**There "+(10-k)+" parkings free for 2012 cars models \n**";
+						info += "\n**"+(10-k)+" parkings remaining for 2012 cars models**\n";
 						cont = false;
 					}	
 				}
@@ -111,7 +105,7 @@ public class Company {
 						go = false;
 					}
 					else if(cont) {
-						info += "\n**There "+(10-k)+" parkings free for 2011 cars models \n**";
+						info += "\n**"+(10-k)+" parkings remaining for 2011 cars models**\n";
 						cont = false;
 					}	
 				}
@@ -123,7 +117,7 @@ public class Company {
 						go = false;
 					}
 					else if(cont) {
-						info += "\n**There "+(10-k)+" parkings free for cars models below 2011  \n**";
+						info += "\n**"+(10-k)+" parkings free for cars models below 2011**\n";
 						cont = false;
 					}	
 				}
@@ -201,6 +195,12 @@ public class Company {
 		}
 		return info;
 	}
+	public void addDocumentation(int vehicleNumber, int year, double accidents, double price, double gas) {
+		Documents soat  = new Soat(price, year, accidents);
+		Documents mech  = new MechTech(price, year, gas);
+		vehicles.get(vehicleNumber).docs.add(soat);
+		vehicles.get(vehicleNumber).docs.add(mech);
+	}
 	public void addVehicle(Vehicle vehicle) {
 		vehicles.add(vehicle);
 	}
@@ -249,17 +249,18 @@ public class Company {
 		addVehicle(motorcycle);
 		return motorcycle;
 	}
-	public void addClientXemployee(int num, String name, String lastName, String id, String tel, String mail) {
+	public String addClientXemployee(int num, String name, String lastName, String id, String tel, String mail) {
+		String info = "";
 		boolean add = true;
 		if(salesMan[num].clients[4] != null) {
-			System.out.println("Client cant be created by excess of clients per employee");
+			info += "Client cant be created by excess of clients per employee";
 		}
 		if(add == true && salesMan[num].clients[0] != null) {
 			for (int i = 0; i < salesMan[num].clients.length; i++) {
 				if((salesMan[num].clients[i] != null) && id.equals(salesMan[num].clients[i].getId()))  {
 					add = false;
-					System.out.println("Cannot add client due ID is already registered for this employee\n");
-					System.out.println("Please re enter a client with different ID\n");
+					info += "Cannot add client due ID is already registered for this employee\n";
+					info += "Please re enter a client with different ID\n";
 				}
 			}
 		}
@@ -268,11 +269,11 @@ public class Company {
 				if(salesMan[num].clients[i] == null && add == true) {	
 					salesMan[num].clients[i] = new Client(name, lastName, id, tel,mail);
 					add = false;
-					System.out.println("Client added!");
+					info += "Client added!";
 				} 
 			}
+		return info;
 	}
-
 	/**
 	 * 
 	 * @param name
@@ -344,17 +345,19 @@ public class Company {
 	}
 	public String showEmployees() {
 		String info = "";
+		int k = 0;
 		for (int i = 0; i < salesMan.length; i++) {
 			info += "\nThe seller #" + (i+1) + " named "+ salesMan[i].getName() + " has assigned: \n";
 			for (int j = 0; j < salesMan[i].clients.length; j++) {
 				if(salesMan[i].clients[j] != null) {
-					info += "Client # "+ (j+1) + "\n" + salesMan[i].clients[j].getName() + "\n" + salesMan[i].clients[j].getLastName() + "\nwith the ID " + salesMan[i].clients[j].getId()+"\n";	
+					info += "--Client #"+(j+1) +"--\n" + "Name: "+salesMan[i].clients[j].getName() + "\nLast name: " + salesMan[i].clients[j].getLastName() + "\nID: " + salesMan[i].clients[j].getId()+"\n";	
 				}
 				if(salesMan[i].clients[j] == null) {
-					System.out.println();
-					info += "Position #"+(j+1)+" free to add a client\n";
+					k+=1;
 				}
 			}
+			info += +k+" Slots remaining to add a client\n";
+			k = 0;
 		}
 		return info;
 	}
@@ -362,7 +365,6 @@ public class Company {
 		String info = "";
 		for (int i = 0; i < salesMan.length; i++) {
 			info += "\nSeller #" + (i+1) + "\nID: "+salesMan[i].getId()+"\nName: "+salesMan[i].getName()+"\nLast name: "+salesMan[i].getLastName()+"\nHad sold: "+salesMan[i].getTotalSales()+" vehicles\n";
-			System.out.println();
 		}
 		return info;
 	}

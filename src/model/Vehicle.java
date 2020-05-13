@@ -51,6 +51,7 @@ public abstract class Vehicle {
 		this.new1 = new1;
 		this.owner = "Propiety of company";
 		this.sold = false;
+		docs = new ArrayList<>();
 	}
 	public void adddocs(Documents doc) {
 		this.docs.add(doc);
@@ -184,8 +185,10 @@ public abstract class Vehicle {
 		if(Vehicle.this.getPlaque() == null) { 
 			return info += "\nNo documents yet until car its sould";	
 		}
-		else
-		info += docs.get(0).descriptionSoat()+docs.get(1).descriptionTech(); 
+		else 
+			info += docs.get(docs.size()-2).description()+docs.get(docs.size()-1).description() + "\n"; 
 		return info;
-	}
+//			info += docs.get(0).descriptionSoat()+docs.get(1).descriptionTech(); 
+//		return info;
+	}		
 }

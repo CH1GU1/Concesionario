@@ -42,9 +42,9 @@ public class Soat extends Documents {
 		return soatCode;
 	}
 	@Override
-	public String descriptionSoat(){
+	public String description(){
 		String info = "";
-		info += super.descriptionSoat()+"\nAccidents cover price: "+accidents+"\nSoat code: "+goByMatrix(super.getmatrix());
+		info += super.description()+"\nAccidents cover price: "+accidents+"\nSoat code: "+goByMatrix(super.getmatrix());
 				return info;
 	}
 	public String testMatrix(int[][] matrix) {

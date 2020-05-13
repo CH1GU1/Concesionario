@@ -70,7 +70,7 @@ public abstract class Car extends Vehicle {
 	}
 	@Override
 	public String description() {
-		String info = super.description()+"\nIs sedan? "+sedan+"\nDoors: "+doors+"\nPolarized? "+polarized;
+		String info = super.description()+"Is sedan? "+sedan+"\nDoors: "+doors+"\nPolarized? "+polarized;
 				return info;
 	}
 

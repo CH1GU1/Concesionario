@@ -61,9 +61,9 @@ public class MechTech extends Documents {
 		}return test;
 	}
 	@Override
-	public String descriptionTech(){
+	public String description(){
 		String info = "";
-		info += super.descriptionTech()+"\nGas level: "+gas+"\nMech code: "+goByMatrix(super.getmatrix());
+		info += super.description()+"\nGas level: "+gas+"\nMech code: "+goByMatrix(super.getmatrix());
 		
 		return info;
 	}
