@@ -23,8 +23,8 @@ public class Menu {
 
 	/**
 	 *This method initialize the menu.
-	 *<b><pre>:<br>
-	 *<b>post:</b> The Menu is ready.<br>
+	 *<b>pre:</b> <br>
+	 *<b>post:</b>The Menu is ready<br>
 	 */
 	public Menu() {
 		this.company = startCompany();
@@ -32,7 +32,7 @@ public class Menu {
 	/**
 	 *This method initialize the company.
 	 *
-	 *<b><pre>:<br>
+	 *<b>pre:</b><br>
 	 *
 	 *<b>post:</b> The company is already created.<br>
 	 *@return company. 
@@ -43,7 +43,7 @@ public class Menu {
 	}
 	/**
 	 *This method call the method "initializeEmployees" on company and initialize the ten employees and six vehicles.
-	 *<b><pre>:</b> Company already created.<br>
+	 *<b>pre:</b> Company already created<br>
 	 *
 	 *<b>post:</b> The ten employees and six vehicles are already created.<br>
 	 */
@@ -55,9 +55,10 @@ public class Menu {
 	}
 	/**
 	 *This method read the option entry by the client for the Main menu.
-	 *<b><pre>:</b>Select an option between 1 to 11. <br>
+	 *<b>pre:</b>Select an option between 1 to 11. <br>
 	 *
 	 *<b>post:</b><br>
+	 *@return choice integer of option to do
 	 */
 	public int readOption() {
 		int choice = sc.nextInt();
@@ -67,7 +68,7 @@ public class Menu {
 	}
 	/**
 	 *This method read the information of a new client and then is assigned to an employee.
-	 *<b><pre>:</b>The employees must be created.<br>
+	 *<b>pre:</b>The employees must be created.<br>
 	 *
 	 *<b>post:</b>A new client was created and assigned to an employee.<br>
 	 */
@@ -91,7 +92,7 @@ public class Menu {
 	} 
 	/**
 	 *This method add a favorite vehicle to a client.
-	 *<b><pre>:</b>A client as minimum was created.<br>
+	 *<b>pre:</b>A client as minimum was created.<br>
 	 *
 	 *<b>post:</b>The selected client has a favorite vehicle on his list.<br>
 	 */
@@ -133,9 +134,9 @@ public class Menu {
 	}
 	/**
 	 *This method is a sub menu for select the type of car between Gasoline, electric or hybrid car to add to company.
-	 *<b><pre>:</b>Company already created.<br>
+	 *<b>pre:</b>Company already created.<br>
 	 *
-	 * @param choose
+	 * @param choose option to type of vehicle to add
 	 * @return info to report the state of the process.
 	 * 
 	 *<b>post:</b>A selection was done and then can continue to the process of add a car.<br>
@@ -160,7 +161,7 @@ public class Menu {
 	}
 	/**
 	 * This method request the information of a motorcycle and then create it. 
-	 * <b><pre>:</b>Company already created.<br> 
+	 * <b>pre:</b>Company already created.<br> 
 	 * 
 	 * @return info to report the state of the process.
 	 * 
@@ -246,7 +247,7 @@ public class Menu {
 		return info += "The motorcycle was succesfully created";
 	}
 	/**This method receives the type of car to add, and request all information.
-	 * <b><pre>:</b>Company already created.<br> 
+	 * <b>pre:</b>Company already created.<br> 
 	 * 
 	 * @param typeCar Integer of the selection of what type of car to add.
 	 * 
@@ -570,7 +571,7 @@ public class Menu {
 	}
 	/**
 	 * This method notify about the car was added without problems.
-	 * <b><pre>:</b>A car was created.<br> 
+	 * <b>pre:</b>A car was created.<br> 
 	 * 
 	 * @param selection integer depend of the type of car that was created.
 	 * @return info as String of the notification.
@@ -599,7 +600,7 @@ public class Menu {
 	}
 	/**
 	 * This method select the type of vehicle to add between Car o Motorcycle.
-	 * <b><pre>:</b>The company was created.<br>
+	 * <b>pre:</b>The company was created.<br>
 	 * 
 	 * @return info as String of the notification of process.
 	 * 
@@ -613,7 +614,7 @@ public class Menu {
 	}
 	/**
 	 * This method deploy a list of the employees with their clients assigned, employees without clients assigned will not be visibles.
-	 * <b><pre>:</b>A client must be added as minimum.<br>
+	 * <b>pre:</b>A client must be added as minimum.<br>
 	 * 
 	 * <b>post:</b>A list with the employee and his assigned clients are deployed.<br>
 	 */
@@ -632,9 +633,9 @@ public class Menu {
 	}
 	/**
 	 * This method deploy a list of the employees with their clients assigned and their complete information, employees without clients assigned will not be visibles.
-	 * <b><pre>:</b>A client must be added as minimum.<br>
+	 *<b>pre:</b>A client must be added as minimum.<br>
 	 * 
-	 * <b>post:</b>A list with the employee and his assigned clients are deployed with complete information.<br>
+	 *<b>post:</b>A list with the employee and his assigned clients are deployed with complete information.<br>
 	 */
 	public void showClientsComplete() {
 		String info = "";
@@ -651,7 +652,7 @@ public class Menu {
 	}
 	/**
 	 * This method makes the discount of a selected vehicle and then apply it, used on the Main menu.
-	 * <b><pre>:</b>A vehicle must be created as minimum.<br>
+	 * <b>pre:</b>A vehicle must be created as minimum.<br>
 	 * 
 	 * <b>post:</b>The discount was applied to selected vehicle.<br>
 	 */
@@ -676,7 +677,7 @@ public class Menu {
 	}
 	/**
 	 * This method show the catalog of vehicles depend of the choose to show
-	 *  <b><pre>:</b>Select a number between 1 or 3.<br>
+	 *  <b>pre:</b>Select a number between 1 or 3.<br>
 	 *  
 	 *  <b>post:</b><br>
 	 */
@@ -690,7 +691,7 @@ public class Menu {
 	}
 	/**
 	 * This method is the operation of the options to select on Main menu.
-	 * <b><pre>:</b>Select numbers between that options.<br>
+	 * <b>pre:</b>Select numbers between that options.<br>
 	 * 
 	 * @param choice
 	 * 
@@ -743,7 +744,7 @@ public class Menu {
 	}
 	/**
 	 * This method makes the discount of a selected vehicle and then apply it at the moment to pay.
-	 * <b><pre>:</b>A vehicle must be created as minimum.<br>
+	 * <b>pre:</b>A vehicle must be created as minimum.<br>
 	 * 
 	 *@param vehicleNumber
 	 *
@@ -764,10 +765,10 @@ public class Menu {
 	}
 	/**
 	 * This method receives the values to make a discount or continue to the sell of a vehicle.
-	 * <b><pre>:</b>A vehicle must be created as minimum.<br>
+	 * <b>pre:</b>A vehicle must be created as minimum.<br>
 	 * 
-	 * @param decision
-	 * @param vehicleNumber
+	 * @param decision integer of option
+	 * @param vehicleNumber position on the vehicles list
 	 * 
 	 * <b>post:</b>The discount was applied to selected vehicle or the sell was finalized.<br>
 	 */
@@ -786,7 +787,7 @@ public class Menu {
 	}
 	/**
 	 * This method makes the pay for a vehicle.
-	 * <b><pre>:</b>A vehicle must be created as minimum.<br>
+	 * <b>pre:</b>A vehicle must be created as minimum.<br>
 	 * 
 	 * @param vehicleNumber Integer of position on the arrayList
 	 * @param sellerNumber Integer of position on sales Man array
@@ -836,7 +837,7 @@ public class Menu {
 	}
 	/**
 	 * This shows favorites list per client
-	 * <b><pre>:</b>A client was created as minimum.<br>
+	 * <b>pre:</b>A client was created as minimum.<br>
 	 * 
 	 * <b>post:</b><br>
 	 */ 
@@ -877,7 +878,7 @@ public class Menu {
 	}
 	/**
 	 * This method receives the operation to do with a client, between add a vehicle to favorites or do the documentation for a vehicle to sell.
-	 * <b><pre>:</b>A vehicle and a client must be created as minimum.<br>
+	 * <b>pre:</b>A vehicle and a client must be created as minimum.<br>
 	 * 
 	 * @param choose Integer of the option selected. 
 	 * 
@@ -973,8 +974,8 @@ public class Menu {
 	}
 	/**
 	 * This method receives the model year to know on the parking lot.
-	 * <b><pre>:</b>A vehicle of 2014 or less model must be created as minimum.<br>
-	 * <b><pre>:</b>Must be select an option between 1 to 5.<br>
+	 * <b>pre:</b>A vehicle of 2014 or less model must be created as minimum.<br>
+	 * <b>pre:</b>Must be select an option between 1 to 5.<br>
 	 * 
 	 * <b>post:</b>Will continue to know the information of that model on the parking lot.<br>
 	 */
@@ -1015,8 +1016,8 @@ public class Menu {
 	}
 	/**
 	 * This method deploy the main program menu.
-	 * <b><pre>:</b>Company and employees must be initialized.<br>
-	 * <b><pre>:</b>Select a valid option.<br>
+	 * <b>pre:</b>Company and employees must be initialized.<br>
+	 * <b>pre:</b>Select a valid option.<br>
 	 * 
 	 * <b>post:</b><br>
 	 */
@@ -1028,7 +1029,7 @@ public class Menu {
 	}
 	/**
 	 * This method start the program, initialize the employees, company and some vehicles too.
-	 * <b><pre>:</b><br>
+	 * <b>pre:</b><br>
 	 * 
 	 * <b>post:</b><br>
 	 */
