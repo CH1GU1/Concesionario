@@ -15,14 +15,15 @@ public class Menu {
 	private final static int SHOW_COMPANY_VEHICLES = 5;
 	private final static int SHOW_CLIENTS = 6;
 	private final static int ENTRY_FAVORITES = 7;
-	private final static int APPLY_DICSOUNT = 8;
-	private final static int ORGANIZE_PARKING = 9;
-	private final static int FINAL_PAY = 10;
-	private final static int EXIT = 11;
+	private final static int SHOW_FAVORITES = 8;
+	private final static int APPLY_DICSOUNT = 9;
+	private final static int ORGANIZE_PARKING = 10;
+	private final static int FINAL_PAY = 11;
+	private final static int EXIT = 12;
 
 	/**
 	 *This method initialize the menu.
-	 *<b> <br>
+	 *<b><pre>:<br>
 	 *<b>post:</b> The Menu is ready.<br>
 	 */
 	public Menu() {
@@ -31,7 +32,7 @@ public class Menu {
 	/**
 	 *This method initialize the company.
 	 *
-	 *<b> <br>
+	 *<b><pre>:<br>
 	 *
 	 *<b>post:</b> The company is already created.<br>
 	 *@return company. 
@@ -120,7 +121,7 @@ public class Menu {
 		clientNumber-=1;
 		System.out.println();
 		System.out.println("Which vehicle do you want to add to favorites?\n");
-		System.out.println(company.showVehicles()+"\n");
+		System.out.println(company.showVehicles(3)+"\n");
 		int choose = 0;
 		while(choose < 1 || choose>company.vehicles.size()) {
 			System.out.println("Choose the vehicle number on the list\n");
@@ -659,7 +660,7 @@ public class Menu {
 		double value = 0;
 		double amount = 0;
 		double finalValue = 0;
-		System.out.println(company.showVehicles());
+		System.out.println(company.showVehicles(3));
 		System.out.println();
 		System.out.println("Which number of vehicle do you want to apply discount?");
 		select = sc.nextInt();
@@ -672,6 +673,20 @@ public class Menu {
 		finalValue = company.vehicles.get(select).getTotalPrice() - amount;
 		company.vehicles.get(select).setTotalPrice(finalValue);
 		System.out.println("Discount of "+value*100+"% Was applied to vehicle!\nPlease check on the vehicle list\n");
+	}
+	/**
+	 * This method show the catalog of vehicles depend of the choose to show
+	 *  <b><pre>:</b>Select a number between 1 or 3.<br>
+	 *  
+	 *  <b>post:</b><br>
+	 */
+	public void showCatalog() {
+		int choose = 0;
+		while(choose < 1 || choose > 3) {
+			System.out.println("What vehicles do you want to see?\n1. New vehicles\n2. Used vehicles\n3. Both kind of vehicles");
+			choose = sc.nextInt();
+		}
+		System.out.println(company.showVehicles(choose));
 	}
 	/**
 	 * This method is the operation of the options to select on Main menu.
@@ -696,13 +711,16 @@ public class Menu {
 			System.out.println(company.showEmployeesComplete());
 			break;
 		case SHOW_COMPANY_VEHICLES:
-			System.out.println(company.showVehicles());
+			showCatalog();
 			break;
 		case SHOW_CLIENTS:
 			showClientsComplete();
 			break;
 		case ENTRY_FAVORITES:
 			favoriteOfClient();
+			break;
+		case SHOW_FAVORITES:
+			showFavorites();
 			break;
 		case APPLY_DICSOUNT:
 			applyDiscount();
@@ -713,6 +731,9 @@ public class Menu {
 			break;
 		case FINAL_PAY:
 			operationsWithSpecificClient(2);
+			break;
+		case EXIT:
+			System.out.println("Good bye!");
 			break;
 		default:
 			System.out.println();
@@ -814,6 +835,47 @@ public class Menu {
 		applyDiscount(decision, vehicleNumber);
 	}
 	/**
+	 * This shows favorites list per client
+	 * <b><pre>:</b>A client was created as minimum.<br>
+	 * 
+	 * <b>post:</b><br>
+	 */ 
+	public void showFavorites() {
+		System.out.println("The company has these sellers with those assigned clients");
+		System.out.println(company.showEmployees()+"\n");
+		System.out.println("With which seller are the client inscribe?\n");
+		int sellerNumber = 0;
+		int d = 0;
+		for (int i = 0; i < company.salesMan.length; i++) {
+			if(company.salesMan[i] != null) {	
+				d+=1;
+			}
+		}
+		while(sellerNumber<1 || sellerNumber>d) {
+			System.out.println("Choose him with his seller number\n");
+			sellerNumber = sc.nextInt();
+		}
+		sellerNumber-=1;
+		if(company.salesMan[sellerNumber].clients[0]!=null) {
+			System.out.println("\nWhich of the assigned clients you need?\n");
+			int clientNumber = 0;
+			int k = 0;
+			for (int i = 0; i < company.salesMan[sellerNumber].clients.length; i++) {
+				if(company.salesMan[sellerNumber].clients[i] != null) {	
+					k+=1;
+				}
+			}
+			while(clientNumber<1 || clientNumber>k) {
+				System.out.println("Choose him with his seller number\n");
+				clientNumber = sc.nextInt();
+			}
+			clientNumber-=1;
+			System.out.println(company.favoriteVehicles(sellerNumber, clientNumber));
+		}
+		else
+			System.out.println("No clients with the seller yet");
+	}
+	/**
 	 * This method receives the operation to do with a client, between add a vehicle to favorites or do the documentation for a vehicle to sell.
 	 * <b><pre>:</b>A vehicle and a client must be created as minimum.<br>
 	 * 
@@ -853,7 +915,7 @@ public class Menu {
 			clientNumber-=1;
 			System.out.println();
 			System.out.println("Vehicle to use\n");
-			System.out.println(company.showVehicles()+"\n");
+			System.out.println(company.showVehicles(3)+"\n");
 			int vehicleNumber = 0;
 			while(vehicleNumber < 1 || vehicleNumber>company.vehicles.size()) {
 				System.out.println("Select his number of the list\n");
@@ -962,7 +1024,7 @@ public class Menu {
 		System.out.println("****"+company.getName()+"****"+"\n - NIT: "+company.getNit()+"\n - Total gain: "+company.getTotalGain()+"\n - Sales: "+company.getSales()+"\n");
 		System.out.println("********MENU********");
 		System.out.println();
-		System.out.println("1. Add vehicle\n2. Add clients for each employee\n3. Show positions free per employee\n4. Deploy employees information \n5. Show company vehicles \n6. Show clients per employee \n7. Show favorites per client\n8. Apply discount to vehicle\n9. Organize parking loat\n10. Make the pay for a vehicle\n11. Exit\n");
+		System.out.println("1. Add vehicle\n2. Add clients for each employee\n3. Show positions free per employee\n4. Deploy employees information \n5. Show company vehicles \n6. Show clients per employee \n7. Entry favorites per client\n8. Show favorites per clients \n9. Apply discount to vehicle\n10. Organize parking loat\n11. Make the pay for a vehicle\n12. Exit\n");
 	}
 	/**
 	 * This method start the program, initialize the employees, company and some vehicles too.
