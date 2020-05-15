@@ -141,7 +141,7 @@ public class Hybrid extends Car implements Gasservices, Electricserv {
 	 */
 	@Override
 	public String description() { 
-		String info = super.description()+"\nCharger type: "+chargerType+"\nBattery life: "+batLife+"\nBattery consuption: "+batConsuption+"\nTank capacity"+tankCapacity+"\nGas type: "+gasType+"\nGas perfomance: "+gasPerformance;
+		String info = super.description()+"\nCharger type: "+chargerType+"\nBattery life in km: "+batLife+"\nBattery consuption in Kw per km: "+batConsuption+"\nTank capacity in gallons"+tankCapacity+"\nGas type: "+gasType+"\nGas perfomance gallons per km: "+gasPerformance;
 		return info;
 	}
 	/**

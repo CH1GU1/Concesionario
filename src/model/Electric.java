@@ -101,7 +101,7 @@ public class Electric extends Car implements Electricserv {
 	 */
 	@Override
 	  public String description() { 
-		String info = super.description()+"\nCharger type: "+chargerType+"\nBattery life: "+batLife+"\nBattery consuption: "+batConsuption;
+		String info = super.description()+"\nCharger type: "+chargerType+"\nBattery life in km: "+batLife+"\nBattery consuption in Kw per km: "+batConsuption;
 				return info;
 	}
 	/**

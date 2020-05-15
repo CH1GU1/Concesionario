@@ -147,7 +147,7 @@ public class Gasoline extends Car implements Gasservices {
 	 */
 	@Override
 	public String description() { 
-		String info = super.description()+"\nTank capacity: "+tankCapacity+"\nGas type: "+gasType+"\nGas performance: "+gasPerformance;
+		String info = super.description()+"\nTank capacity in gallons: "+tankCapacity+"\nGas type: "+gasType+"\nGas performance gallons per km: "+gasPerformance;
 		return info;
 	}
 }

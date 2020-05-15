@@ -380,9 +380,9 @@ public abstract class Vehicle {
 	 * <b>post:</b><br>
 	 */
 	public String description() {
-		String info = "\nCurrent owner: "+owner+"\nSold: "+soldToString()+"\nTotal price: "+totalPrice+"\nBase price: "+basePrice+"\nBrand: "+brand+"\nModel: "+model+"\nCylinder: "+cylinder+"\nMileage: "+mileage+"\nIs new?: "+new1+"\nPlaque: "+plaque;
+		String info = "\nCurrent owner: "+owner+"\nSold: "+soldToString()+"\nTotal price: "+totalPrice+"\nBase price: "+basePrice+"\nBrand: "+brand+"\nModel: "+model+"\nCylinder: "+cylinder+"\nMileage in km: "+mileage+"\nIs new?: "+new1+"\nPlaque: "+plaque;
 		if(Vehicle.this.getPlaque() == null) { 
-			return info += "\nNo documents yet until car its sould";	
+			return info += "\nNo documents yet until vehicle its sold";	
 		}
 		else 
 			info += docs.get(docs.size()-2).description()+docs.get(docs.size()-1).description() + "\n"; 

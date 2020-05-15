@@ -177,7 +177,7 @@ public class Motorcycle extends Vehicle implements Gasservices {
 	 */
 	@Override
 	public String description() { 
-		String info = super.description()+"\nMotorcycle type: "+motorcycleType+"\nGas Capacity: "+gasCapacity+"\nConsume: "+consume;
+		String info = super.description()+"\nMotorcycle type: "+motorcycleType+"\nGas Capacity in gallons: "+gasCapacity+"\nConsume in gallons per km: "+consume;
 		return info;
 	}
 }

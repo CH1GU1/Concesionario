@@ -6,7 +6,7 @@ public class Menu {
 
 	//Attributes and constants declaration
 	static Scanner sc;
-	private Company company = new Company("Vehicle sales store", 1234, 0, 0);
+	private Company company = new Company("Vehicle sales store", 58945780, 0, 0);
 	private final static int ADD_VEHICLES = 1;
 	private final static int CLIENT_FAVORITES = 1;
 	private final static int ADD_CLIENTS= 2;
@@ -116,7 +116,7 @@ public class Menu {
 			}
 		}
 		while(clientNumber<1 || clientNumber>k) {
-			System.out.println("Select the client number on the list");
+			System.out.println("Select the client number# on the list");
 			clientNumber = sc.nextInt();
 		}
 		clientNumber-=1;
@@ -169,16 +169,16 @@ public class Menu {
 	 */
 	public String createMotorcycle() {
 		String info = "";
-		System.out.println("Type his base price");
+		System.out.println("Enter his base price");
 		double basePrice = sc.nextDouble();
 		sc.nextLine();
-		System.out.println("Type his brand");
+		System.out.println("Enter his brand");
 		String brand = sc.nextLine();
-		System.out.println("Type his model");
+		System.out.println("Enter his model");
 		int model = sc.nextInt();
-		System.out.println("Type the cylinder");
+		System.out.println("Enter the cylinder (can be a decimal)");
 		double cylinder = sc.nextDouble();
-		System.out.println("Enter his mileage");
+		System.out.println("Enter his mileage in km");
 		int mileage = sc.nextInt();
 		sc.nextLine();
 		System.out.println("The motorcycle is new or used? 1.New 2.Used");
@@ -219,7 +219,7 @@ public class Menu {
 		if(new1.equalsIgnoreCase("No")) {
 			System.out.println("Enter his plaque");
 			String plaque = sc.nextLine();
-			System.out.println("Enter the gas capacity of the motorcycle");
+			System.out.println("Enter the gas capacity of the motorcycle in gallons");
 			double gasCapacity = sc.nextDouble();
 			System.out.println("Enter SOAT price");
 			double price = sc.nextDouble();
@@ -239,7 +239,7 @@ public class Menu {
 			company.createMotorcycle(basePrice, brand, model, cylinder, mileage, new1, plaque, motorcycleType, gasCapacity, price, price2, year, accidents, gas);
 		}
 		else if(new1.equalsIgnoreCase("Yes")) {
-			System.out.println("Type the gasoline capacity of the motorcycle");
+			System.out.println("Enter the gasoline capacity of the motorcycle in gallons");
 			double gasCapacity = sc.nextDouble();
 			System.out.println();
 			company.createMotorcycle(basePrice, brand, model, cylinder, mileage, new1, motorcycleType,  gasCapacity);
@@ -254,16 +254,16 @@ public class Menu {
 	 * <b>post:</b>The car information is saved to continue to the process of ad a car.<br>
 	 */
 	public void createNewCar(int typeCar) {
-		System.out.println("Type his base price");
+		System.out.println("Enter his base price");
 		double basePrice = sc.nextDouble();
 		sc.nextLine();
-		System.out.println("Type his brand");
+		System.out.println("Enter his brand");
 		String brand = sc.nextLine();
-		System.out.println("Type his model");
+		System.out.println("Enter his model");
 		int model = sc.nextInt();
-		System.out.println("Type his cylinder");
+		System.out.println("Enter his cylinder (can be a decimal)");
 		double cylinder = sc.nextDouble();
-		System.out.println("Enter his mileage");
+		System.out.println("Enter his mileage in km");
 		int mileage = sc.nextInt();
 		sc.nextLine();
 		System.out.println("The car is new or used? 1.New 2.Used");
@@ -464,7 +464,7 @@ public class Menu {
 		else if(new1.equalsIgnoreCase("Yes")) {
 			switch (typeCar) {
 			case 1:
-				System.out.println("Enter the tank capacity");
+				System.out.println("Enter the tank capacity in gallons");
 				int tankCapacity = sc.nextInt();
 				sc.nextLine();
 				boolean continues = false;
@@ -510,13 +510,13 @@ public class Menu {
 				default:System.out.println("Select 1 or 2");
 				break;
 				}
-				System.out.println("Enter the battery life");
+				System.out.println("Enter the battery life in km");
 				double batLife = sc.nextDouble();
 				company.createElectricCar(basePrice,brand, model, cylinder, mileage, new1, sedan, doors, polarized, chargerType, batLife);
 				break;
 
 			case 3:
-				System.out.println("Enter the tank capacity");
+				System.out.println("Enter the tank capacity in gallons");
 				int tankCapacityH = sc.nextInt();
 				sc.nextLine();
 				boolean continuesH = false;
@@ -558,7 +558,7 @@ public class Menu {
 				default:System.out.println("Select 1 or 2");
 				break;
 				}
-				System.out.println("Enter the battery life");
+				System.out.println("Enter the battery life in km");
 				double batLifeH = sc.nextDouble();
 				System.out.println();
 				company.createHybridCar(basePrice, brand,model, cylinder, mileage, new1, sedan, doors, polarized, chargerTypeH, batLifeH, tankCapacityH,  gasTypeH);
@@ -804,7 +804,7 @@ public class Menu {
 		company.setSales(companySells);
 		if(LocalDate.now().getYear()!= company.vehicles.get(vehicleNumber).docs.get(docSoat).getYear()) {
 			System.out.println("\nThe mount for the SOAT is $"+company.vehicles.get(vehicleNumber).docs.get(docSoat).getPrice()+"\n");
-			System.out.println("Your SOAT is out of date, you need to pay a extrapay. This equals to $500.000 extra\n");
+			System.out.println("Your SOAT is out of date, will be an extrapay of $500.000 extra\n");
 			double pay = company.vehicles.get(vehicleNumber).getTotalPrice() + company.vehicles.get(vehicleNumber).docs.get(docSoat).getPrice()+ 500000;
 			company.vehicles.get(vehicleNumber).setTotalPrice(pay);
 			company.setTotalGain(pay);
@@ -817,7 +817,7 @@ public class Menu {
 		}
 		if(LocalDate.now().getYear()!= company.vehicles.get(vehicleNumber).docs.get(docMech).getYear()) {
 			System.out.println("\nThe mount for the mechanical technician is $"+company.vehicles.get(vehicleNumber).docs.get(docSoat).getPrice()+"+\n");
-			System.out.println("Your mechanical technician is out of date, you need to pay a extrapay. This equals to $500.000 extra\n");
+			System.out.println("Your mechanical technician is out of date, will be an extrapay of $500.000 extra\n");
 			double pay = company.vehicles.get(vehicleNumber).getTotalPrice()+company.vehicles.get(vehicleNumber).docs.get(docSoat).getPrice() + 500000;
 			company.vehicles.get(vehicleNumber).setTotalPrice(pay);
 			company.setTotalGain(pay);
@@ -927,7 +927,7 @@ public class Menu {
 			switch (choose) {
 
 			case CLIENT_FAVORITES:
-				company.salesMan[sellerNumber].clients[clientNumber].tryDrive.add(company.vehicles.get(choose));
+				company.salesMan[sellerNumber].clients[clientNumber].tryDrive.add(company.vehicles.get(vehicleNumber));
 				System.out.println("Vehicle added to favorites to the client: " + company.salesMan[sellerNumber].clients[clientNumber].getName());
 				break;
 
